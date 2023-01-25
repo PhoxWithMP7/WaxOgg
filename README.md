@@ -11,6 +11,9 @@ How EXACTLY does it function ?
 3. It'll create a copy of a spectrum template and link it to its correct ID.
 4. Finally it adds all your entries into the audio jet file under "/content/EarwaxAudio.jet". All IDs are within 50000 and 80000.
 
+# Python file scary :(((( what do ???
+Do not worry my little biscuit , I will release a V2 with a GUI to help you use this more easily , expect Valve time on it , but do expect it
+
 # Credits
 - Me for creating this shit
 - [Ironminer888](https://gamebanana.com/members/1740235) at Gamebanana for creating the [guide](https://gamebanana.com/tuts/13522) that inspired this
