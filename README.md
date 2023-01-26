@@ -18,7 +18,7 @@ How EXACTLY does it function ?
 Do not worry my little biscuit , I will release a V2 with a GUI to help you use this more easily , expect Valve time on it , but do expect it.
 In the meantime , here's how you run it.
 1. [INSTALL PYTHON](https://www.python.org/downloads/) , yes you need python to run this program , you need Python 3 , the version shouldnt matter but if you are unsure go with 3.9.
-2. Launch script.py , the other files dont really matter unless you wanna snoop around.
+2. Launch WaxOgg.py , the other files dont really matter unless you wanna snoop around.
 3. Follow the instructions given. (Unrelated for V1s)
 4. You're done !
 
