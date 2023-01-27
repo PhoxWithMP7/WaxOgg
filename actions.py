@@ -10,7 +10,7 @@ from typing import List, Optional
 #       -V3-4: Add a way to reset options with GUI incase something goes bad (deletion of new IDs , fresh audiojet file)
 #       -V2: Add a GUI (lmao)
 #       -V2: Test this on linux
-#       -V2: Create Error handling
+#       -V2: Create Error handling (No directories given, incorrect files given, Template not present)
 #       -V3 : Exe package
 
 BASE_EARWAX_AUDIO_DIR = r"/content/EarwaxAudio/Audio/"
@@ -20,7 +20,7 @@ TEMPLATE_SPECTRUM = r"/content/EarwaxAudio/Spectrum/Template.jet"
 
 
 def generate_manager(list_of_sources: List[str], selected_dir: str) -> None:
-    # Code governing the jet file , dont touch unless you want to kill yourself
+    # Calls governing the jet file , dont touch without having a perfectly working solution
     reformat_audio_jet(selected_dir)
     fix_line(selected_dir)
 
