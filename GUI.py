@@ -27,8 +27,10 @@ browse_file.withdraw()
 def search_for_file_path():
     list_of_sources = []
     curr_dir = os.getcwd()
-    files = filedialog.askopenfilenames(parent=browse_file, initialdir=curr_dir, title='Select files')
+    files = filedialog.askopenfilenames(filetypes=[("OGG files", "*.ogg")], parent=browse_file,
+                                        initialdir=curr_dir, title='Select your OGG files')
+
     for file in files:
-        print(f"You chose: {file}")
+        print(f"You chose {file} as a source")
         list_of_sources.append(file)
     return list_of_sources
