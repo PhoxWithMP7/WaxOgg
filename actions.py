@@ -1,6 +1,7 @@
 import random
 import shutil
 import re
+import sys
 
 from typing import List, Optional
 
@@ -47,7 +48,6 @@ def generate_manager(list_of_sources: List[str], selected_dir: str) -> None:
 
     # Fix the stuff we delete up there with the reformat
     reformat_audio_jet_fix(selected_dir)
-    print("All entries successfully added\n")
 
 
 def find_source_name(source: str) -> str:
@@ -59,6 +59,10 @@ def find_source_name(source: str) -> str:
 
     pattern = r"(?:\/).*\/(.*)\.ogg"
 
+    # This is awful, I'll have to figure out a better way to catch that error
+    print(source)
+    if source is None:
+        sys.exit("The source is empty\n")
     try:
         source_name = re.search(pattern, source)
         return source_name.group(1)
@@ -83,6 +87,15 @@ def copy_ogg_to_earwax_audio(source_ogg: str, audio_id: int, earwax_dir: str) ->
         print(f"Creating OGG file with {audio_id} as ID\n")
     except Exception as error:
         print("You either gave no source/directory or the file was not an OGG\n")
+        print(f"Stack trace: {error} \n")
+
+
+def check_for_spectrum_template(earwax_dir: str) -> None:
+    target = f"{earwax_dir}{BASE_EARWAX_SPECTRUM_DIR}Template.jet"
+    try:
+        shutil.copy(f"{earwax_dir}{TEMPLATE_SPECTRUM}", target)
+    except Exception as error:
+        print("You either gave no directory or the Template is corrupted/not present\n")
         print(f"Stack trace: {error} \n")
 
 
