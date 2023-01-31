@@ -1,4 +1,4 @@
-# WaxOgg Alpha
+# WaxOgg V1.5.2
 A program to easily mod Jackbox' EarWax
 
 ## Disclaimer
