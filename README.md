@@ -20,7 +20,7 @@ Do not worry my little biscuit , I will release a V2 with a GUI to help you use 
 In the meantime , here's how you run it.
 1. [Install Python](https://www.python.org/downloads/) , yes you need python to run this program , you need Python 3 , the version shouldnt matter but if you are unsure go with 3.9.
 2. Download the Zip file and extract it wherever you want
-3. Launch WaxOgg.py inside the folder with the command ```python WaxOgg.py``` or ```python3 WaxOgg.py``` dependng on your installation
+3. Launch WaxOgg.py inside the folder with the command ```python WaxOgg.py``` or ```python3 WaxOgg.py``` depending on your installation
 4. Follow the instructions given.
 5. You're done !
 
