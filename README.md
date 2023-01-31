@@ -1,8 +1,8 @@
-# WaxOgg V1.5.2
+# WaxOgg Version 1.5.2
 A program to easily mod Jackbox' EarWax
 
 ## Disclaimer
-This program is in an alpha state and can easily break your EarWax installation. Have a copy at the ready incase you need to start anew.
+This program is currently in v1.5.2 which means it can easily break your EarWax installation. Have a copy at the ready incase you need to start anew and make sure you are always giving the correct directory and uncorrupted OGG files.
 ### The script currently does not sport a Template.jet file yet for the spectrum, you will have to create one by using one of the existing spectrum files. You can use the spectrum file with ID 22740 as a template as it is the longest.
 
 # How does WaxOgg work ?
@@ -18,9 +18,9 @@ How EXACTLY does it function ?
 # Python file scary :(((( what do ???
 Do not worry my little biscuit , I will release a V2 with a GUI to help you use this more easily , expect Valve time on it , but do expect it.
 In the meantime , here's how you run it.
-1. [INSTALL PYTHON](https://www.python.org/downloads/) , yes you need python to run this program , you need Python 3 , the version shouldnt matter but if you are unsure go with 3.9.
+1. [Install Python](https://www.python.org/downloads/) , yes you need python to run this program , you need Python 3 , the version shouldnt matter but if you are unsure go with 3.9.
 2. Launch WaxOgg.py , the other files dont really matter unless you wanna snoop around.
-3. Follow the instructions given. (Unrelated for V1s)
+3. Follow the instructions given.
 4. You're done !
 
 # Credits
