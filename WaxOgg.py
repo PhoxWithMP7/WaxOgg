@@ -9,7 +9,8 @@ time.sleep(3)
 BASE_EARWAX_DIR = search_for_path()
 if not BASE_EARWAX_DIR:
     print("WARNING: YOU GAVE NO EARWAX DIRECTORY PLEASE RESELECT\n")
-    print("You will be asked again , dont fuck it up\n")
+    print("You will be asked again , if you do not give a "
+          "proper directory or give the wrong one you will have to restart\n")
     time.sleep(2)
     BASE_EARWAX_DIR = search_for_path()
 
@@ -19,7 +20,7 @@ time.sleep(3)
 list_of_sources = search_for_file_path()
 if not list_of_sources:
     print("WARNING: YOU GAVE NO SOURCES PLEASE RESELECT\n")
-    print("You will be asked again , dont fuck it up\n")
+    print("You will be asked again , if you do not select any sources , the program will just close after a bit\n")
     time.sleep(2)
     list_of_sources = search_for_file_path()
 
