@@ -8,9 +8,8 @@ from typing import List, Optional
 # List of general Todos , this is mainly for different versions
 # TODO: -V4: Modify with GUI sounds on a whim (delete, change ID, refresh sounds so no dupes)
 #       -V3-4: Add a way to reset options with GUI incase something goes bad (deletion of new IDs , fresh audiojet file)
-#       -V2: Add a GUI (lmao)
-#       -V2: Test this on linux
-#       -V2: Create Error handling (No directories given, incorrect files given, Template not present)
+#       -V2: Add a Tkinter GUI
+#       -V3: Optimize error handling to be more in tune with what the function does
 #       -V3 : Exe package
 
 BASE_EARWAX_AUDIO_DIR = r"/content/EarwaxAudio/Audio/"
@@ -44,7 +43,7 @@ def generate_manager(list_of_sources: List[str], selected_dir: str) -> None:
         copy_ogg_to_earwax_audio(source, source_id, earwax_dir)
         create_spectrum_from_template(source_id, earwax_dir)
         write_to_audio_jet(new_entry, earwax_dir)
-        print(f"Added new entry for {source}\n")
+        print(f"Added new entry for {source} as {source_name} with {source_id}\n")
 
     # Fix the stuff we delete up there with the reformat
     reformat_audio_jet_fix(selected_dir)
@@ -90,10 +89,16 @@ def copy_ogg_to_earwax_audio(source_ogg: str, audio_id: int, earwax_dir: str) ->
         print(f"Stack trace: {error} \n")
 
 
-def check_for_spectrum_template(earwax_dir: str) -> None:
+def find_template():
+    pass
+
+
+def create_new_spectrum_template(earwax_dir: str) -> None:
+    # if not find_template():
+    original_template = f"{earwax_dir}{BASE_EARWAX_SPECTRUM_DIR}22740.jet"
     target = f"{earwax_dir}{BASE_EARWAX_SPECTRUM_DIR}Template.jet"
     try:
-        shutil.copy(f"{earwax_dir}{TEMPLATE_SPECTRUM}", target)
+        shutil.copy(f"{original_template}", target)
     except Exception as error:
         print("You either gave no directory or the Template is corrupted/not present\n")
         print(f"Stack trace: {error} \n")
@@ -149,11 +154,12 @@ def write_to_audio_jet(new_entry: str, earwax_dir: str) -> None:
         print(f"Stack trace: {error} \n")
 
 
-# My hope is by showing you this terribleness that I never have to fucking touch files ever again in my life and
-# that no one will ever ask me to write a file editing function ever again either
+# This is a horrible implementation but this will do for the moment for V2 or V3 this will need to change
 def reformat_audio_jet(earwax_dir: str) -> None:
     try:
         with open(f"{earwax_dir}{BASE_EARWAX_JET_FILE}", "r+", encoding='utf-8') as audio_jet:
+            # TODO: -V2: Fix bug related to single line jet file , must check if file is single line then remove
+            #           last 2 characters and append
             lines_data = audio_jet.readlines()
             audio_jet.seek(0)
             audio_jet.truncate()
