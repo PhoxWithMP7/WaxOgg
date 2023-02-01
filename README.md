@@ -4,7 +4,7 @@ A program to easily mod Jackbox' EarWax
 ## Disclaimer
 This program is currently in v1.5.2 which means it can easily break your EarWax installation. Have a copy at the ready incase you need to start anew and make sure you are always giving the correct directory and uncorrupted OGG files.
 ### The script currently does not sport a Template.jet file yet for the spectrum, you will have to create one by using one of the existing spectrum files. You can use the spectrum file with ID 22740 as a template as it is the longest. This is an oversight and will be fixed by v2.0
-#### There is a bug if your AudioFile.jet is a one liner , it will delete its entire content. Make sure your jet file is properly formated before using this
+### There is a bug if your AudioFile.jet is a one liner , it will delete its entire content. Make sure your jet file is properly formated before using this
 
 # How does WaxOgg work ?
 WaxOgg is a python script that takes existing ogg audio files and adds them to EarWax to obtain modded sounds.
