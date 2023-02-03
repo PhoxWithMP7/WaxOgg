@@ -1,3 +1,4 @@
+import os
 import random
 import shutil
 import re
@@ -41,9 +42,10 @@ def generate_manager(list_of_sources: List[str], selected_dir: str) -> None:
         new_entry = create_new_entry_for_audio_jet(source_name, source_id)
 
         copy_ogg_to_earwax_audio(source, source_id, earwax_dir)
+        create_new_spectrum_template(earwax_dir)
         create_spectrum_from_template(source_id, earwax_dir)
         write_to_audio_jet(new_entry, earwax_dir)
-        print(f"Added new entry for {source} as {source_name} with {source_id}\n")
+        print(f"Added new entry for {source} as {source_name} with {source_id} ID\n")
 
     # Fix the stuff we delete up there with the reformat
     reformat_audio_jet_fix(selected_dir)
@@ -89,19 +91,36 @@ def copy_ogg_to_earwax_audio(source_ogg: str, audio_id: int, earwax_dir: str) ->
         print(f"Stack trace: {error} \n")
 
 
-def find_template():
-    pass
+def find_template(earwax_dir) -> bool:
+    """
+    Finds a template inside the earwax directory , can be found anywhere
+    :param earwax_dir: The base earwax directory
+    :return: True
+    """
+    target = "Template.jet"
+    for root, directories, files in os.walk(f"{earwax_dir}{BASE_EARWAX_SPECTRUM_DIR}"):
+        if target in files:
+            print("Template found\n")
+            return True
 
 
 def create_new_spectrum_template(earwax_dir: str) -> None:
-    # if not find_template():
-    original_template = f"{earwax_dir}{BASE_EARWAX_SPECTRUM_DIR}22740.jet"
-    target = f"{earwax_dir}{BASE_EARWAX_SPECTRUM_DIR}Template.jet"
-    try:
-        shutil.copy(f"{original_template}", target)
-    except Exception as error:
-        print("You either gave no directory or the Template is corrupted/not present\n")
-        print(f"Stack trace: {error} \n")
+    """
+    Creates a new template if it does not exist
+    :param earwax_dir: The base earwax directory
+    :return: Nothing , creates a new spectrum template file
+    """
+    if not find_template(earwax_dir):
+        original_template = f"{earwax_dir}{BASE_EARWAX_SPECTRUM_DIR}22740.jet"
+        target = f"{earwax_dir}{BASE_EARWAX_SPECTRUM_DIR}Template.jet"
+        try:
+            shutil.copy(f"{original_template}", target)
+            print("Created a new Template.jet")
+        except Exception as error:
+            print("You either gave no directory or the Template is corrupted/not present\n")
+            print(f"Stack trace: {error} \n")
+    else:
+        print("Template was found\n")
 
 
 def create_spectrum_from_template(audio_id: int, earwax_dir: str) -> None:
