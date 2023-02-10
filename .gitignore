@@ -1,7 +1,9 @@
 # IntelliJ
 
 .idea
-
+forbidden_ids.txt
+test.py
+V2 GUI.py
 
 # Environment
 /venv
