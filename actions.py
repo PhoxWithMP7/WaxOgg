@@ -31,21 +31,23 @@ def generate_manager(list_of_sources: List[str], selected_dir: str) -> None:
     # Calls governing the jet file , don't touch without having a perfectly working solution
     reformat_audio_jet(selected_dir)
     fix_line(selected_dir)
-    new_forbidden_ids = []
-    existing_forbidden_ids = read_forbidden_ids()
+    # new_forbidden_ids = []
+    # existing_forbidden_ids = read_forbidden_ids()
     earwax_dir = selected_dir
-    create_new_spectrum_template(earwax_dir)
-    print(existing_forbidden_ids)
+    # create_new_spectrum_template(earwax_dir)
+    # print(existing_forbidden_ids)
 
     for source in list_of_sources:
         # 20000 is used by existing IDs for the ogg files
         # 90000 and 80000 as well as 40000 are used by announcers and others
         # Random int might pose an issue if by chance they have overlapping IDs
-        temporary = random.randint(50000, 80000)
-        print("temp " + str(temporary))
-        source_id = find_if_id_exists(existing_forbidden_ids, new_forbidden_ids, temporary)
-        print(new_forbidden_ids)
 
+        # temporary = random.randint(50000, 80000)
+        # print("temp " + str(temporary))
+        # source_id = find_if_id_exists(existing_forbidden_ids, new_forbidden_ids, temporary)
+        # print(new_forbidden_ids)
+
+        source_id = random.randint(50000, 80000)
         source_name = find_source_name(source)
         new_entry = create_new_entry_for_audio_jet(source_name, source_id)
 
