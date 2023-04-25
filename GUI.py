@@ -3,12 +3,6 @@ import os
 from tkinter import filedialog, Frame, Tk
 
 
-class Window(Frame):
-    def __init__(self, master=None):
-        Frame.__init__(self, master)
-        self.master = master
-
-
 browse_dir = Tk()
 browse_dir.withdraw()
 
