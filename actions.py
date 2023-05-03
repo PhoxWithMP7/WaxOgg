@@ -13,6 +13,7 @@ from typing import List, Optional
 #       -V3: Optimize error handling to be more in tune with what the function does
 #       -V3 : Exe package
 #       -V2: Force copy audio jet file to correct format
+#       -V2: Fix the ID mess and get a more comfortable approach
 
 BASE_EARWAX_AUDIO_DIR = r"/content/EarwaxAudio/Audio/"
 BASE_EARWAX_JET_FILE = r"/content/EarwaxAudio.jet"
@@ -28,22 +29,21 @@ def generate_manager(list_of_sources: List[str], selected_dir: str) -> None:
     :return: Nothing
     """
 
+    earwax_dir = selected_dir
+    new_forbidden_ids = []
+    existing_forbidden_ids = read_forbidden_ids()
+
+    create_new_spectrum_template(earwax_dir)
+
     # Calls governing the jet file , don't touch without having a perfectly working solution
     reformat_audio_jet(selected_dir)
     fix_line(selected_dir)
-    # new_forbidden_ids = []
-    # existing_forbidden_ids = read_forbidden_ids()
-    earwax_dir = selected_dir
-    # create_new_spectrum_template(earwax_dir)
-    # print(existing_forbidden_ids)
 
     for source in list_of_sources:
         # 20000 is used by existing IDs for the ogg files
         # 90000 and 80000 as well as 40000 are used by announcers and others
         # Random int might pose an issue if by chance they have overlapping IDs
 
-        # temporary = random.randint(50000, 80000)
-        # print("temp " + str(temporary))
         # source_id = find_if_id_exists(existing_forbidden_ids, new_forbidden_ids, temporary)
         # print(new_forbidden_ids)
 
@@ -61,11 +61,12 @@ def generate_manager(list_of_sources: List[str], selected_dir: str) -> None:
     reformat_audio_jet_fix(selected_dir)
 
 
-def find_if_id_exists(existing_forbidden_ids: List[str], new_forbidden_ids: List[str], source_id: int):
+def find_if_id_exists(existing_forbidden_ids: List[str], new_forbidden_ids: List[str], source_id: int) -> int:
     if str(source_id) in new_forbidden_ids or str(source_id) in existing_forbidden_ids:
         print(new_forbidden_ids)
         print("original id " + str(source_id))
         new_source_id = random.randint(50000, 80000)
+
         print("new id " + str(new_source_id))
         print("DUPLICATE FOUND\n")
         print("DUPLICATE FOUND\n")
@@ -73,11 +74,14 @@ def find_if_id_exists(existing_forbidden_ids: List[str], new_forbidden_ids: List
         print("DUPLICATE FOUND\n")
         print("DUPLICATE FOUND\n")
         print("DUPLICATE FOUND\n")
+
         find_if_id_exists(existing_forbidden_ids, new_forbidden_ids, new_source_id)
     else:
-        new_forbidden_ids.append(str(source_id))
-        write_to_forbidden_ids(str(source_id))
-        return source_id
+        new_source_id = source_id
+        new_forbidden_ids.append(str(new_source_id))
+        write_to_forbidden_ids(str(new_source_id))
+        print(new_source_id)
+        return new_source_id
 
 
 def find_source_name(source: str) -> str:
@@ -137,7 +141,7 @@ def create_new_spectrum_template(earwax_dir: str) -> None:
     """
     Creates a new template if it does not exist
     :param earwax_dir: The base earwax directory
-    :return: Nothing , creates a new spectrum template file
+    :return: Nothing , creates a new spectrum template file from the longest existing spectrum
     """
 
     if not find_template(earwax_dir):
@@ -233,14 +237,17 @@ def reformat_audio_jet_fix(earwax_dir: str) -> None:
         print(f"Stack trace: {error} \n")
 
 
-def write_to_forbidden_ids(forbidden_id: str):
-    with open('forbidden_ids.txt', 'a+') as forbidden:
-        forbidden.write(forbidden_id + "\n")
-
-
-def read_forbidden_ids():
+def read_forbidden_ids() -> List[str]:
+    """
+    Returns a list from the txt file containing the IDs
+    """
     forbidden_list = []
     with open('forbidden_ids.txt') as file:
         for line in file:
             forbidden_list.append(line.rstrip())
     return forbidden_list
+
+
+def write_to_forbidden_ids(forbidden_id: str) -> None:
+    with open('forbidden_ids.txt', 'a+') as forbidden:
+        forbidden.write(forbidden_id + "\n")
