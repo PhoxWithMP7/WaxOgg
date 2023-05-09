@@ -63,18 +63,7 @@ def generate_manager(list_of_sources: List[str], selected_dir: str) -> None:
 
 def find_if_id_exists(existing_forbidden_ids: List[str], new_forbidden_ids: List[str], source_id: int) -> int:
     if str(source_id) in new_forbidden_ids or str(source_id) in existing_forbidden_ids:
-        print(new_forbidden_ids)
-        print("original id " + str(source_id))
         new_source_id = random.randint(50000, 80000)
-
-        print("new id " + str(new_source_id))
-        print("DUPLICATE FOUND\n")
-        print("DUPLICATE FOUND\n")
-        print("DUPLICATE FOUND\n")
-        print("DUPLICATE FOUND\n")
-        print("DUPLICATE FOUND\n")
-        print("DUPLICATE FOUND\n")
-
         find_if_id_exists(existing_forbidden_ids, new_forbidden_ids, new_source_id)
     else:
         new_source_id = source_id
@@ -239,7 +228,7 @@ def reformat_audio_jet_fix(earwax_dir: str) -> None:
 
 def read_forbidden_ids() -> List[str]:
     """
-    Returns a list from the txt file containing the IDs
+    :return: Returns a list from the txt file containing the IDs
     """
     forbidden_list = []
     with open('forbidden_ids.txt') as file:
@@ -249,5 +238,9 @@ def read_forbidden_ids() -> List[str]:
 
 
 def write_to_forbidden_ids(forbidden_id: str) -> None:
+    """
+    :param forbidden_id: ID to write to the file
+    :return: Nothing , creates a new txt file for forbidden IDs if it doesn't exist
+    """
     with open('forbidden_ids.txt', 'a+') as forbidden:
         forbidden.write(forbidden_id + "\n")
