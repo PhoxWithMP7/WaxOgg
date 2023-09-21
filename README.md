@@ -2,9 +2,7 @@
 A program to easily mod Jackbox' EarWax
 
 ## Disclaimer
-This program is currently in v1.5.2 which means it can easily break your EarWax installation. Have a copy at the ready incase you need to start anew and make sure you are always giving the correct directory and uncorrupted OGG files.
-### The script currently does not sport a Template.jet file yet for the spectrum, you will have to create one by using one of the existing spectrum files. You can use the spectrum file with ID 22740 as a template as it is the longest. This is an oversight and will be fixed by v2.0
-### There is a bug if your AudioFile.jet is a one liner , it will delete its entire content. Make sure your jet file is properly formated before using this
+### There is a bug if your AudioFile.jet is a one liner , it will delete its entire content. Make sure your jet file is properly formated before using this. I'll fix this asap.
 
 # How does WaxOgg work ?
 WaxOgg is a python script that takes existing ogg audio files and adds them to EarWax to obtain modded sounds.
@@ -19,11 +17,15 @@ How EXACTLY does it function ?
 # How to run this ?
 I will release a V2 with a GUI to help you use this more easily , expect Valve time on it , but do expect it.
 In the meantime , here's how you run it.
-1. [Install Python](https://www.python.org/downloads/) , yes you need python to run this program , you need Python 3 , the version shouldnt matter but if you are unsure go with 3.9.
+1. [Install Python](https://www.python.org/downloads/) , you'll need Python 3 if you do not have it installed already , the version shouldnt matter but if you are unsure go with 3.9.
 2. Download the Zip file and extract it wherever you want
 3. Launch WaxOgg.py inside the folder with the command ```python WaxOgg.py``` or ```python3 WaxOgg.py``` depending on your installation or if you are on windows simply double click the file to execute it
 4. Follow the instructions given.
 5. You're done !
+
+# Known Issues
+1. There's a potential ID override at the moment due to the fact this isnt refactored.
+2. The read write operations are a mess at the moment. If there's a fuckup , start fresh with a new install.
 
 # Credits
 - Me for creating this
